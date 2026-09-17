@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model Table {
+  user_id   String   @db.VarChar
+  email     String   @db.VarChar
+  password  String?  @db.VarChar
+  is_active Boolean?
+  role      String?  @db.VarChar
+  nama      String?  @db.VarChar
+
+  @@ignore
+}
+
+model katalog_data {
+  data_2d_id  String   @id(map: "katalog_data_pk") @db.VarChar(50)
+  layer_name  String?  @db.VarChar(50)
+  akses       String?  @db.VarChar(50)
+  is_editable Boolean?
+  wms_url     String?  @db.VarChar(64)
+  wfs_url     String?  @db.VarChar(256)
+  author      String?  @db.VarChar(50)
+}
+
+model users {
+  user_id  String  @id(map: "users_pk") @db.VarChar
+  email    String? @db.VarChar
+  password String? @db.VarChar
+}
