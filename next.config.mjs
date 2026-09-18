@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
+  env : {
+    CESIUM_ION_TOKEN: process.env.CESIUM_ION_TOKEN,
+    JWR_SECRET: process.env.JWR_SECRET ,
+    JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN
+  },
+  basePath: "/portal"
 };
 
 export default nextConfig;
